@@ -1,12 +1,13 @@
 const express = require('express')
-require('./src/db/mongoose')
-const userRouter = require('./src/router/user')
+require('./db/mongoose')
+const userRouter = require('./router/user')
+const cors = require("cors");
 
 //Server Creation
 const app = express()
-const port = 3000
+const port = 5000
 
-
+app.use(cors())
 app.use(express.json())
 app.use(userRouter)
 

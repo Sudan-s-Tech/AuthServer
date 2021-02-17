@@ -28,9 +28,9 @@ export function LoginForm() {
       <Marginer direction="vertical" margin="1.6em" />
       <SubmitButton type="submit">Signin</SubmitButton>
       <Marginer direction="vertical" margin="1em" />
-      <MutedLink href="#">
+      <MutedLink >
         Don't have an accoun?
-        <BoldLink href="#" onClick={switchToSignup}>
+        <BoldLink  onClick={switchToSignup}>
           Signup
         </BoldLink>
       </MutedLink>
