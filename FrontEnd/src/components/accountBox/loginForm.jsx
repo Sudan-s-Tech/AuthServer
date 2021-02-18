@@ -29,10 +29,14 @@ export function LoginForm() {
       <SubmitButton type="submit">Signin</SubmitButton>
       <Marginer direction="vertical" margin="1em" />
       <MutedLink >
-        Don't have an accoun?
+        Don't have an account?
         <BoldLink  onClick={switchToSignup}>
           Signup
         </BoldLink>
+      </MutedLink>
+      <Marginer direction="vertical" margin="1em" />
+      <MutedLink>
+        Forgot Password?
       </MutedLink>
     </BoxContainer>
   );
