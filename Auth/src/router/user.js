@@ -8,13 +8,22 @@ const router = new express.Router()
 
 
 router.post('/users/signup', async (req, res) => {
-    const user = new User(req.body)
-
     try {
-        await user.save()
+        console.log('you reached route')
+        const user = new User(
+            {
+                name : req.body.name,
+                phone: req.body.phone,
+                email: req.body.email,
+                password : req.body.password
+            }
+        )
+        const userSignedUp = await user.save()
         const token = await user.generateAuthToken()
-        res.status(201).send({user , token})
-    } catch (e) {
+        res.status(201).send({userSignedUp , token})
+        // res.status(201).send(`hello there`)
+    } catch(e) {
+        console.log(e)
         res.status(400).send(e)
     }
 })
@@ -25,9 +34,10 @@ router.post('/users/login', async (req,res) => {
         const user = await User.findByCredentials(req.body.email , req.body.password)
         const token = await user.generateAuthToken()
         res.send({user, token})
-    }catch{
+        console.log(res)
+    }catch(e){
         res.status(400).send()
-
+        console.log(e)
     }
 })
 

@@ -18,38 +18,30 @@ export function SignupForm() {
   const [phone, setphone] = useState("");
   const [password, setpassword] = useState("");
   //  const [cnfpassword, setconfpassword] = useState('');
-const signup = ()=>{
-  axios({ 
-    method: 'post', 
-    url: 'http://localhost:5000/users/signup', 
-    body: {  name: name,
-      email : email,
-      phone : phone,
-      password : password}, 
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+  const signup = () => {
+    let content = {
+      name: name,
+      email: email,
+      phone: phone,
+      password: password,
     }
-    }) 
-    .then(res => { 
-      if (res.status === 200) {
-        console.log(res)
-      } 
-    }).catch(err => { 
-      console.error(err);
-    });
-  }
-  // const signup = () => {
-  //   axios.post("http://localhost:5000/users/signup",{
-  //      name: name,
-  //      email : email,
-  //      phone : phone,
-  //      password : password
-  //      }).then((res) =>{
-  //        console.log(res)
-  //      }).catch((err)=>{
-  //        console.log(err)
-  //      });
-  // };
+    axios({
+      method: "post",
+      url: "http://localhost:5000/users/signup",
+      data:content,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <BoxContainer>
@@ -95,11 +87,9 @@ const signup = ()=>{
         Signup
       </SubmitButton>
       <Marginer direction="vertical" margin="1em" />
-      <MutedLink >
+      <MutedLink>
         Already have an account?
-        <BoldLink  onClick={switchToSignin}>
-          Signin
-        </BoldLink>
+        <BoldLink onClick={switchToSignin}>Signin</BoldLink>
       </MutedLink>
     </BoxContainer>
   );

@@ -45,10 +45,6 @@ export const Input = styled.input`
     color: rgba(200, 200, 200, 1);
   }
 
-  &:not(:last-of-type) {
-    border-bottom: 1.5px solid rgba(200, 200, 200, 0.4);
-  }
-
   &:focus {
     outline: none;
     border-bottom: 2px solid  #01B8E2;
