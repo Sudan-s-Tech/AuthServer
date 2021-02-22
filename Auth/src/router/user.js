@@ -21,10 +21,12 @@ router.post('/users/signup', async (req, res) => {
         const userSignedUp = await user.save()
         const token = await user.generateAuthToken()
         res.status(201).send({userSignedUp , token})
+
         // res.status(201).send(`hello there`)
     } catch(e) {
         console.log(e)
         res.status(400).send(e)
+        // res.status(400).send("Email already Exist")
     }
 })
 
@@ -35,9 +37,10 @@ router.post('/users/login', async (req , res) => {
         const token = await user.generateAuthToken()
         res.send({user, token})
         console.log(res)
-    } catch(e) {
+    }catch(e){
+        res.status(400).send("Email or password are incorrect")
         console.log(e)
-       res.status(410).send(e)
+    //    res.status(410).send(e)
     }
 })
 
