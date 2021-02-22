@@ -21,10 +21,11 @@ router.post('/users/signup', async (req, res) => {
         const userSignedUp = await user.save()
         const token = await user.generateAuthToken()
         res.status(201).send({userSignedUp , token})
+
         // res.status(201).send(`hello there`)
     } catch(e) {
-        console.log(e)
-        res.status(400).send(e)
+        // console.log(e)
+        res.status(400).send("Email already Exist")
     }
 })
 
@@ -36,7 +37,7 @@ router.post('/users/login', async (req,res) => {
         res.send({user, token})
         console.log(res)
     }catch(e){
-        res.status(400).send()
+        res.status(400).send("Email or password are incorrect")
         console.log(e)
     }
 })
