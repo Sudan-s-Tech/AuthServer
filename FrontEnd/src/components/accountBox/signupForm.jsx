@@ -12,6 +12,7 @@ import { AccountContext } from "./accountContext";
 import axios from "axios";
 
 export function SignupForm() {
+  const[msg, setmsg] = useState('')
   const { switchToSignin } = useContext(AccountContext);
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
@@ -39,7 +40,9 @@ export function SignupForm() {
         }
       })
       .catch((err) => {
-        console.error(err);
+       if(err.response){
+         setmsg(err.response.data.message)
+       }
       });
   };
 
@@ -91,6 +94,7 @@ export function SignupForm() {
         Already have an account?
         <BoldLink onClick={switchToSignin}>Signin</BoldLink>
       </MutedLink>
+      <h5 style={{color:'red'}}>{msg}</h5>
     </BoxContainer>
   );
 }

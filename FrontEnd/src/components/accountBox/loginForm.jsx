@@ -12,18 +12,19 @@ import { AccountContext } from "./accountContext";
 import axios from "axios";
 
 export function LoginForm() {
+  const [msg, setmsg] = useState("");
   const { switchToSignup } = useContext(AccountContext);
- const [email, setemail] = useState('');
- const [password, setpassword] = useState('');
- const signin = ()=>{
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const signin = () => {
     let content = {
       email: email,
-      password: password
-    }
+      password: password,
+    };
     axios({
       method: "post",
       url: "http://localhost:5000/users/login",
-      data:content,
+      data: content,
       headers: {
         "Content-Type": "application/json",
       },
@@ -33,34 +34,47 @@ export function LoginForm() {
           console.log(res);
         }
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((e) => {
+        console.log(e);
+        // console.log(err.response.data)
+        // console.log(err.response.status)
+        // console.log(err.response.headers)
+        // setmsg(err.response.data.message)
       });
- }
+  };
 
   return (
     <BoxContainer>
       <FormContainer>
-        <Input type="email" value={email} onChange={(e)=>{
-          setemail(e.target.value)
-        }} placeholder="Email" />
-        <Input type="password" value={password} onChange={(e) =>{
-          setpassword(e.target.value)
-        }} placeholder="Password" />
+        <Input
+          type="email"
+          value={email}
+          onChange={(e) => {
+            setemail(e.target.value);
+          }}
+          placeholder="Email"
+        />
+        <Input
+          type="password"
+          value={password}
+          onChange={(e) => {
+            setpassword(e.target.value);
+          }}
+          placeholder="Password"
+        />
       </FormContainer>
       <Marginer direction="vertical" margin="1.6em" />
-      <SubmitButton type="submit" onClick={signin}>Signin</SubmitButton>
-      <Marginer direction="vertical" margin="1em" />
-      <MutedLink >
-        Don't have an account?
-        <BoldLink  onClick={switchToSignup}>
-          Signup
-        </BoldLink>
-      </MutedLink>
+      <SubmitButton type="submit" onClick={signin}>
+        Signin
+      </SubmitButton>
       <Marginer direction="vertical" margin="1em" />
       <MutedLink>
-        Forgot Password?
+        Don't have an account?
+        <BoldLink onClick={switchToSignup}>Signup</BoldLink>
       </MutedLink>
+      <Marginer direction="vertical" margin="1em" />
+      <MutedLink>Forgot Password?</MutedLink>
+      <h5 style={{ color: "red" }}>{msg}</h5>
     </BoxContainer>
   );
 }
