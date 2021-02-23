@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://127.0.0.1:27017/Auth-Api' , {
+mongoose.connect('mongodb+srv://sudantech:sudantech@cluster0.jlees.mongodb.net/Auth-API' , {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
