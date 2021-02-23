@@ -36,6 +36,11 @@ export function LoginForm() {
       })
       .catch((e) => {
         console.log(e);
+       if(email === ""){
+         setmsg('Email cant be empty')
+       }else if(password === ''){
+         setmsg('Password cant be empty')
+       }else{setmsg('Email or Password is incorrect')}
         // console.log(err.response.data)
         // console.log(err.response.status)
         // console.log(err.response.headers)
